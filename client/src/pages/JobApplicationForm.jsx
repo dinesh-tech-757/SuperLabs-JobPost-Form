@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function JobApplicationForm() {
-  const {id} = useParams()
-  const fetchData = axios.get(`http://localhost:3000/api/v1/jobpost/${id}`)
-  console.log(fetchData)
+  const { job } = useParams();
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -15,6 +16,7 @@ function JobApplicationForm() {
     website: "",
     resume: null,
     cover: null,
+    job_title: job,
   });
 
   const handleChange = (e) => {
@@ -44,13 +46,15 @@ function JobApplicationForm() {
       website: "",
       resume: null,
       cover: null,
+      job_title: job,
     });
+    navigate("/success");
   };
 
   return (
     <div className="max-w-3xl mx-auto p-10 bg-white shadow-lg rounded-lg border border-gray-300">
       <h2 className="text-3xl font-semibold mb-6 text-gray-800 text-center">
-        Vendor Manager – Recruitment (IT Resource Augmentation)
+        {job}
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

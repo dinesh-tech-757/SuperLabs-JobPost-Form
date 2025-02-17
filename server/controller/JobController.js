@@ -18,7 +18,7 @@ const postJob = async (req, res) => {
       job_close_date,
       job_status,
     } = req.body;
-    
+
     const newJob = await client.query(
       `INSERT INTO jobpost (job_title,job_location_type,job_category,job_type,job_location,job_experience_level,job_technical_skills,job_education_qualification,job_description,job_interview_rounds,job_budget,job_create_date,job_close_date,job_status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
       [
@@ -49,49 +49,47 @@ const postJob = async (req, res) => {
 const getAllJobPost = async (req, res) => {
   try {
     const result = await client.query("SELECT * FROM jobpost");
-  res.json(result.rows); 
+    res.json(result.rows);
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
 };
 
 const deleteJobPost = async (req, res) => {
-  
   const { id } = req.params;
   console.log(id);
   try {
     await client.query("DELETE FROM jobpost WHERE job_id = $1", [id]);
     res.json({ message: "Job posting deleted successfully" });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ message: "Failed to delete job posting" });
-      }
-      };
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Failed to delete job posting" });
+  }
+};
 
+const updatJobPost = async (req, res) => {
+  try {
+    const {
+      job_title,
+      job_location_type,
+      job_category,
+      job_type,
+      job_location,
+      job_experience_level,
+      job_technical_skills,
+      job_education_qualification,
+      job_description,
+      job_interview_rounds,
+      job_budget,
+      job_create_date,
+      job_close_date,
+      job_status,
+    } = req.body;
 
-      const updatJobPost = async (req, res) => {
-        try {
-          const {
-            job_title,
-            job_location_type,
-            job_category,
-            job_type,
-            job_location,
-            job_experience_level,
-            job_technical_skills,
-            job_education_qualification,
-            job_description,
-            job_interview_rounds,
-            job_budget,
-            job_create_date,
-            job_close_date,
-            job_status,
-          } = req.body;
-      
-          const { id } = req.params;
-      
-          const updateJobPost = await client.query(
-            `UPDATE jobpost SET  
+    const { id } = req.params;
+
+    const updateJobPost = await client.query(
+      `UPDATE jobpost SET  
             job_title= $1,  
             job_location_type=$2, 
             job_category= $3, 
@@ -108,56 +106,51 @@ const deleteJobPost = async (req, res) => {
             job_status=$14
             WHERE job_id = $15 
             RETURNING *`,
-            [
-              job_title,
-              job_location_type,
-              job_category,
-              job_type,
-              job_location,
-              job_experience_level,
-              job_technical_skills,
-              job_education_qualification,
-              job_description,
-              job_interview_rounds,
-              job_budget,
-              job_create_date,
-              job_close_date,
-              job_status,
-              id,
-            ]
-          );
-      
-          if (!updateJobPost.rows[0])
-            return res.status(404).send("Job Post not found");
-          res.status(200).json(updateJobPost.rows[0]);
-        } catch (err) {
-          res.status(400).send(err);
-        }
-      };
+      [
+        job_title,
+        job_location_type,
+        job_category,
+        job_type,
+        job_location,
+        job_experience_level,
+        job_technical_skills,
+        job_education_qualification,
+        job_description,
+        job_interview_rounds,
+        job_budget,
+        job_create_date,
+        job_close_date,
+        job_status,
+        id,
+      ]
+    );
 
+    if (!updateJobPost.rows[0])
+      return res.status(404).send("Job Post not found");
+    res.status(200).json(updateJobPost.rows[0]);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
 
-      const getSingleJobPost = async (req, res) => {
-        console.log(req.params.id);
-        try {
-  
-          const singleJobPost = await client.query(
-            `SELECT * FROM jobpost WHERE job_id = $1`,
-            [req.params.id]
-          );
-          if (!singleJobPost.rows[0])
-            return res.status(404).send("Job post not found");
-          res.json(singleJobPost.rows[0]);
-        } catch (err) {
-          res.status(400).send({ message: err.message });
-        }
-      };
-      
-
+const getSingleJobPost = async (req, res) => {
+  try {
+    const singleJobPost = await client.query(
+      `SELECT * FROM jobpost WHERE job_id = $1`,
+      [req.params.id]
+    );
+    if (!singleJobPost.rows[0])
+      return res.status(404).send("Job post not found");
+    res.json(singleJobPost.rows[0]);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+};
 
 export {
   getAllJobPost,
   postJob,
   deleteJobPost,
   updatJobPost,
-  getSingleJobPost
+  getSingleJobPost,
 };
