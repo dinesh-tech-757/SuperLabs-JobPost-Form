@@ -156,6 +156,7 @@ export default function Candidates() {
               <th className="px-4 py-2">Email</th>
               <th className="px-4 py-2">Phone</th>
               <th className="px-4 py-2">View</th>
+
               {/* <th className="px-4 py-2">LinkedIn</th>
               <th className="px-4 py-2">Website</th> */}
               {/* <th className="px-4 py-2">Resume</th>
@@ -197,6 +198,7 @@ export default function Candidates() {
                     Cover Letter
                   </a>
                 </td> */}
+
                 <td
                   onClick={() => setViewId(candidate.id)}
                   className="px-4 py-2"
