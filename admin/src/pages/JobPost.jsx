@@ -52,6 +52,7 @@ function JobPost() {
       name: "Skills",
       selector: (row) => row.job_technical_skills,
       sortable: true,
+      width: "250px",
     },
     {
       name: "Experience",
@@ -126,10 +127,6 @@ function JobPost() {
   };
 
   const handleDeleteItem = (id) => {
-    console.log(id)
-
-
-
     axios.delete(`http://localhost:3000/api/v1/jobpost/${id}`)
     .then((response) => {
       if (response.status === 200) {

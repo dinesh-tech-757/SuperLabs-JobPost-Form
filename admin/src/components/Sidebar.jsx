@@ -15,14 +15,14 @@ function Sidebar() {
   const menuItems = [
     { name: "Dashboard", path: "/" },
     { name: "Job Post", path: "/jobpost" },
+    { name: "Candidates", path: "/candidates" },
     { name: "Location", path: "/location" },
     { name: "Categories", path: "/category" },
     { name: "Users", path: "/users" },
-    { name: "Candidates", path: "/candidates" },
   ];
 
   return (
-    <div className="w-72 bg-white shadow-lg h-screen fixed">
+    <div className="h-full bg-white shadow-lg  fixed">
       {" "}
       {/* Fixed width and height */}
       <div className="flex justify-between items-center p-5">
@@ -35,17 +35,28 @@ function Sidebar() {
         </button>
       </div>
       <nav className="mt-5 px-5 ">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
-              location.pathname === item.path ? "bg-blue-500 text-white" : ""
-            }`}
-          >
-            {item.name}
-          </Link>
-        ))}
+        <Link to={'/'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Dashboard</Link>
+        <Link to={'/jobpost'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/jobpost' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Job Post</Link>
+        <Link to={'/candidates'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/candidates' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Applied Candidates</Link>
+            <p className="bg-gray-300 h-[1px]"></p>
+            <br />
+        <Link to={'/location'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/location' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Add Location</Link>
+        <Link to={'/category'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/category' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Add Category</Link>
+            <p className="bg-gray-300 h-[1px]"></p>
+            <br />
+        <Link to={'/users'} className={`block m-2 py-3 px-4 rounded-md text-gray-700 hover:bg-blue-100 transition ${
+              location.pathname === '/users' ? "bg-blue-500 hover:bg-blue-700 text-white" : ""
+            }`}>Add Users</Link>
       </nav>
       <div className="p-5 mt-auto">
         <button

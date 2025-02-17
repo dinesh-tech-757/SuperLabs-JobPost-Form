@@ -59,7 +59,6 @@ function EditJobPost({
     const jobpost = await axios.get(
       `http://localhost:3000/api/v1/jobpost/${editId}`
     );
-    console.log(jobpost);
     setEditJobPost(jobpost.data);
 
    //Job Close Date
@@ -249,26 +248,6 @@ setCreateDate(jobpost.data.job_create_date)
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(
-      "Updating job post:",
-      editJobPost.job_title,
-      selectedJobLocationTypeValues,
-      editJobPost.job_category,
-      selectedJobTypeValues,
-      editJobPost.job_location,
-      editJobPost.job_experience_level,
-      techSkillsValues,
-      educationalValues,
-      editJobPost.job_education_qualification,
-      editJobPost.job_description,
-      editJobPost.job_interview_rounds,
-      editJobPost.job_budget,
-      createDate,
-      closeDate,
-      editJobPost.job_status
-    );
-
     await axios
       .put(
         `http://localhost:3000/api/v1/jobpost/${editId}`,
@@ -297,7 +276,6 @@ setCreateDate(jobpost.data.job_create_date)
       .then((res) => {
         setJob(job?.map((j) => (j.job_id === editId ? res.data : j)));
         setIsEdit(false)
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

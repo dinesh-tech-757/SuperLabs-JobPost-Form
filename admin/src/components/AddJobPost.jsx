@@ -204,7 +204,6 @@ function AddJobPost({ job, setJob, setIsAdd }) {
         },
       })
       .then((res) => {
-        console.log(res);
         setJob([...job, res.data]);
         setIsAdd(false);
       })

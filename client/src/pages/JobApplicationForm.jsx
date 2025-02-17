@@ -1,7 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function JobApplicationForm() {
+  const {id} = useParams()
+  const fetchData = axios.get(`http://localhost:3000/api/v1/jobpost/${id}`)
+  console.log(fetchData)
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
