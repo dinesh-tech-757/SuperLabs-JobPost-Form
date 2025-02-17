@@ -905,6 +905,7 @@ function JobPost() {
       name: "Resume",
       cell: (row) => (
         <a
+          className="border-blue-500 text-blue-500 border-2 p-[3px] rounded-md"
           href={`http://localhost:3000/uploads/${row.resume}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -918,6 +919,7 @@ function JobPost() {
       name: "Cover Letter",
       cell: (row) => (
         <a
+          className="border-blue-500 text-blue-500 border-2 p-[3px] rounded-md"
           href={`http://localhost:3000/uploads/${row.cover}`}
           target="_blank"
           rel="noopener noreferrer"

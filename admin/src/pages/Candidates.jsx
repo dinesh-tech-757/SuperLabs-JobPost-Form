@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Eye } from "lucide-react";
-import ViewCandidate from "./ViewCandidate";
+import ViewCandidate from "../components/ViewCandidate";
 
 export default function Candidates() {
   //   const [formData, setFormData] = useState({

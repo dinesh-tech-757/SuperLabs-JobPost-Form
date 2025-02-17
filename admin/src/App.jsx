@@ -9,10 +9,10 @@ export const ThemeContext = createContext();
 import { MantineProvider } from "@mantine/core";
 import Category from "./pages/Category";
 import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./components/LoginPage";
 import axios from "axios";
 import JobPost from "./pages/JobPost";
-import NoPage from "./pages/NoPage";
+import NoPage from "./components/NoPage";
 import Candidates from "./pages/Candidates";
 import ProtectedRoute from "./components/ProtectedRoute";
 
