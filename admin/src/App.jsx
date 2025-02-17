@@ -37,14 +37,14 @@ function App() {
         <ThemeContext.Provider value={{ job, setJob }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/login" element={<LoginPage/>} />
+              <Route path="/login" element={<LoginPage />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<Home />}>
                   <Route index element={<Dashboard />} />
+                  <Route path="users" element={<Users />} />
                   <Route path="jobpost" element={<JobPost />} />
                   <Route path="location" element={<Location />} />
                   <Route path="category" element={<Category />} />
-                  <Route path="users" element={<Users />} />
                   <Route path="candidates" element={<Candidates />} />
                 </Route>
               </Route>
