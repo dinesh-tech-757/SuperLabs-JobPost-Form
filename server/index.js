@@ -193,16 +193,16 @@
 //   console.log(`Server is running on port ${process.env.PORT}`);
 // });
 
-import express from 'express';
-import dotenv from 'dotenv';
+import express from "express";
+import dotenv from "dotenv";
 dotenv.config({ path: "./config/.env" });
 import cors from "cors";
-import multer from 'multer';
+import multer from "multer";
 import router from "./router/router.js";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 import authRouter from "./router/authRoutes.js";
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 const app = express();
 
@@ -216,7 +216,7 @@ app.use(express.static("public"));
 import client from "./config/connectdatabase.js";
 app.use("/uploads", express.static("uploads"));
 
-app.use('/auth', authRouter);
+app.use("/auth", authRouter);
 
 ///////////Candidates
 

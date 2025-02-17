@@ -24,7 +24,7 @@ CREATE TABLE jobpost(
 
 
 
-CREATE TABLE candidates (
+  CREATE TABLE candidates (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
@@ -33,7 +33,8 @@ CREATE TABLE candidates (
   linkedin TEXT,
   website TEXT,
   resume TEXT NOT NULL,
-  cover TEXT NOT NULL
+  cover TEXT NOT NULL,
+  job_title TEXT NOT NULL
 );
 
 
