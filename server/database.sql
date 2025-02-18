@@ -4,6 +4,7 @@ CREATE TABLE location(
     location_id SERIAL PRIMARY KEY,
     location_title VARCHAR(255)
     );
+    
 CREATE TABLE jobpost(
     job_id SERIAL PRIMARY KEY,
     job_title TEXT ,
@@ -33,7 +34,8 @@ CREATE TABLE candidates (
   linkedin TEXT,
   website TEXT,
   resume TEXT NOT NULL,
-  cover TEXT NOT NULL
+  cover TEXT NOT NULL,
+  job_title TEXT NOT NULL
 );
 
 

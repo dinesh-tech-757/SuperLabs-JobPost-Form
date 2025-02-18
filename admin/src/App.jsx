@@ -41,8 +41,8 @@ function App() {
                   <Route path="jobpost" element={<JobPost />} />
                   <Route path="location" element={<Location />} />
                   <Route path="category" element={<Category />} />
-                  <Route path="users" element={<Users />} />
                   <Route path="candidates" element={<Candidates />} />
+                  <Route path="users" element={<Users />} />
                 </Route>
               </Route>
               <Route path="*" element={<NoPage />} />
