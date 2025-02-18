@@ -9,9 +9,9 @@ import express from 'express';
 const router = express.Router();
 import { postLocation, getLocation, updateLocation, deleteLocation } from "../controller/locationController.js";
 import { postCategory, getCategory, updateCategory, deleteCategory } from "../controller/categoryController.js";
-import { postUser, getUser, updateUser, deleteUser } from "../controller/usersController.js";
+import { getUser, deleteUser } from "../controller/usersController.js";
 
-router.post("/jobpost",postJob )
+// router.post("/jobpost",postJob )
 
 router.get("/jobpost",getAllJobPost)
 
@@ -43,16 +43,10 @@ router.put("/category/:id", updateCategory)
 router.delete("/category/:id",deleteCategory)
 
 //user
-//create user
-router.post("/users", postUser);
 //get all category
 router.get("/users", getUser)
-//update category
-router.put("/users/:id", updateUser)
 //delete category
 router.delete("/users/:id",deleteUser)
 
-//auth login
-// router.post("/login", loginUser)
 
 export default router;

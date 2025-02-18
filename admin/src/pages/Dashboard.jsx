@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
 
 // import { Chart as ChartJS } from "chart.js/auto";
 // import { Bar, Doughnut, Line } from "react-chartjs-2";
@@ -20,10 +21,16 @@ export default function Dashboard() {
     const response = await axios.get("http://localhost:3000/candidates");
     setCandidates(response.data);
   };
+  const name = localStorage.getItem("username")
+
+  
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+        <p className="absolute top-7 right-7 bg-blue-100 p-2 rounded-lg flex gap-2"><FaUserAlt className="text-gray-700" />{name}</p>
+      </div>
       <div className="grid grid-cols-2 gap-6">
         <div className="p-4 bg-blue-100 rounded-lg shadow">
           <h3 className="text-lg font-semibold">Total Jobs Posted </h3>

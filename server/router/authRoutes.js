@@ -33,6 +33,10 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
+
+
+        const userdetails = await client.query("SELECT * FROM users WHERE email = $1", [email])
+
         // Fetch user from database
         const { rows } = await client.query("SELECT * FROM users WHERE email = $1", [email]);
         if (rows.length === 0) {
@@ -49,8 +53,7 @@ router.post("/login", async (req, res) => {
         // Generate JWT token
         const token = jwt.sign({ id: user.id }, process.env.JWT_KEY, { expiresIn: "3h" });
 
-        return res.status(200).json({ token });
-        na
+        return res.status(200).json({ token, data:userdetails });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

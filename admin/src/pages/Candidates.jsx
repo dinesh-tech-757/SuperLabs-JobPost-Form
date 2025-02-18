@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Eye } from "lucide-react";
+import ViewCandidate from "../components/ViewCandidate";
 
 export default function Candidates() {
   //   const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ export default function Candidates() {
   //   });
 
   const [candidates, setCandidates] = useState([]);
+  const [viewId, setViewId] = useState();
 
   useEffect(() => {
     fetchCandidates();
@@ -61,7 +64,7 @@ export default function Candidates() {
       c?.first_name.toLowerCase().includes(query.toLowerCase()) ||
       c?.last_name.toLowerCase().includes(query.toLowerCase()) ||
       c?.email.toLowerCase().includes(query.toLowerCase()) ||
-      c?.phone.toLowerCase().includes(query.toLowerCase())
+      c?.job_title.toLowerCase().includes(query.toLowerCase())
     );
   });
 
@@ -69,6 +72,8 @@ export default function Candidates() {
     await axios.delete(`http://localhost:3000/candidates/${id}`);
     fetchCandidates();
   };
+
+  if (viewId) return <ViewCandidate id={viewId} setViewId={setViewId} />;
 
   return (
     <div className="p-6 mx-auto flex flex-col gap-5">
@@ -140,35 +145,40 @@ export default function Candidates() {
         className="input w-full mt-4 p-4 rounded-3xl"
         onChange={(e) => setQuery(e.target.value)}
       />
+
       <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
         {" "}
         <table className="w-full text-left table-auto min-w-max scrool-none">
           <thead>
             <tr>
+              <th className="px-4 py-2">Job Applied</th>
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Email</th>
               <th className="px-4 py-2">Phone</th>
-              <th className="px-4 py-2">LinkedIn</th>
-              <th className="px-4 py-2">Website</th>
-              <th className="px-4 py-2">Resume</th>
-              <th className="px-4 py-2">Cover Letter</th>
+              <th className="px-4 py-2">View</th>
+
+              {/* <th className="px-4 py-2">LinkedIn</th>
+              <th className="px-4 py-2">Website</th> */}
+              {/* <th className="px-4 py-2">Resume</th>
+              <th className="px-4 py-2">Cover Letter</th> */}
             </tr>
           </thead>
           <tbody>
             {filteredCandidates?.map((candidate) => (
               <tr key={candidate.id} className="border">
+                <td className="px-4 py-2">{candidate.job_title}</td>
                 <td className="px-4 py-2">
                   {candidate.first_name} {candidate.last_name}
                 </td>
                 <td className="px-4 py-2">{candidate.email}</td>
                 <td className="px-4 py-2">{candidate.phone}</td>
-                <td className="px-4 py-2">
+                {/* <td className="px-4 py-2">
                   <a href={candidate.linkedin}>linkedin</a>
                 </td>
                 <td className="px-4 py-2">
                   <a href={candidate.website}>Website</a>
-                </td>
-                <td className="px-4 py-2">
+                </td> */}
+                {/* <td className="px-4 py-2">
                   <a
                     href={`http://localhost:3000/uploads/${candidate.resume}`}
                     download={`http://localhost:3000/uploads/${candidate.resume}`}
@@ -187,6 +197,13 @@ export default function Candidates() {
                   >
                     Cover Letter
                   </a>
+                </td> */}
+
+                <td
+                  onClick={() => setViewId(candidate.id)}
+                  className="px-4 py-2"
+                >
+                  <Eye />
                 </td>
               </tr>
             ))}
