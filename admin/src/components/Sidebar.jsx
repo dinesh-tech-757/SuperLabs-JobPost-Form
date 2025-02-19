@@ -15,7 +15,7 @@ function Sidebar() {
   };
   const name = localStorage.getItem("email")
 
-  if (name == "dinesh@gmail.com") {
+  if (name == "admin@superlabs.com") {
     return (
       <div className="h-full bg-white shadow-lg  fixed">
         {" "}

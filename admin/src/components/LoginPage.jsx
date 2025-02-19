@@ -5,31 +5,33 @@ import { useNavigate } from "react-router-dom";
 const loginUrl = import.meta.env.VITE_AUTH_URL;
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = useState({
-      email: '',
-      password: ''
-  })
+    email: '',
+    password: ''
+  });
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChanges = (e) => {
-    setValues({...values, [e.target.name]:e.target.value})
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post(loginUrl, values);
-        console.log(response)
-        if (response.status === 200) {
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('email', response.data.data.rows[0].email)
-          localStorage.setItem('username', response.data.data.rows[0].username)
-            navigate('/')
-        }
+      const response = await axios.post(loginUrl, values);
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('email', response.data.user.email);
+        localStorage.setItem('username', response.data.user.username);
+        navigate('/');
+      }
     } catch (error) {
-        console.error("Login error:", error);
-        alert("Login failed. Please check your username and password and try again.")
+      console.error("Login error:", error);
+      alert("Login failed. Please check your username and password and try again.");
     }
-  }
-  const [showPassword, setShowPassword] = useState(false);
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
