@@ -710,10 +710,6 @@ function JobPost() {
     setCandidates(response.data);
   };
 
-  console.log(candidates);
-
-  console.log(viewCandidate);
-
   /////candidates
 
   const columns = [
@@ -1013,7 +1009,11 @@ function JobPost() {
             <div className="mt-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold">Candidates</h2>
-                <button onClick={() => setViewCandidate("")}>
+                <button
+                  onClick={() => {
+                    setViewCandidate("");
+                  }}
+                >
                   <CloseIcon />
                 </button>
               </div>

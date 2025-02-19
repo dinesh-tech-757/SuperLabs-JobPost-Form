@@ -28,60 +28,59 @@ function App() {
     fetchAllData();
   }, []);
 
-  const name = localStorage.getItem("email")
+  const name = localStorage.getItem("email");
 
-      if (name == "dinesh@gmail.com") {
-        return (
-          <MantineProvider>
-      <div className="font-Josefin">
-        <ThemeContext.Provider value={{ job, setJob }}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Home />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="jobpost" element={<JobPost />} />
-                  <Route path="location" element={<Location />} />
-                  <Route path="category" element={<Category />} />
-                  <Route path="candidates" element={<Candidates />} />
+  if (name == "admin@superlabs.com") {
+    return (
+      <MantineProvider>
+        <div className="font-Josefin">
+          <ThemeContext.Provider value={{ job, setJob }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<Home />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="jobpost" element={<JobPost />} />
+                    <Route path="location" element={<Location />} />
+                    <Route path="category" element={<Category />} />
+                    <Route path="candidates" element={<Candidates />} />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="*" element={<NoPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeContext.Provider>
-      </div>
-    </MantineProvider>
-        )
-      } else {
-        return (
-          <MantineProvider>
-      <div className="font-Josefin">
-        <ThemeContext.Provider value={{ job, setJob }}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<LoginPage/>} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Home />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="jobpost" element={<JobPost />} />
-                  <Route path="location" element={<Location />} />
-                  <Route path="category" element={<Category />} />
-                  {/* <Route path="users" element={<Users />} /> */}
-                  <Route path="candidates" element={<Candidates />} />
+                <Route path="*" element={<NoPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ThemeContext.Provider>
+        </div>
+      </MantineProvider>
+    );
+  } else {
+    return (
+      <MantineProvider>
+        <div className="font-Josefin">
+          <ThemeContext.Provider value={{ job, setJob }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<Home />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="jobpost" element={<JobPost />} />
+                    <Route path="location" element={<Location />} />
+                    <Route path="category" element={<Category />} />
+                    {/* <Route path="users" element={<Users />} /> */}
+                    <Route path="candidates" element={<Candidates />} />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="*" element={<NoPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeContext.Provider>
-      </div>
-    </MantineProvider>
-        )
-      };
-  
+                <Route path="*" element={<NoPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ThemeContext.Provider>
+        </div>
+      </MantineProvider>
+    );
+  }
 
   // return (
   //   <MantineProvider>
