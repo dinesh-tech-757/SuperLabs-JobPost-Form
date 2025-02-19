@@ -1,11 +1,8 @@
-PORT=
+DB_HOST="localhost"
+DB_USER="postgres"
+DB_PORT=5432
+DB_PASSWORD="Vini@555"
+DB_NAME="superlabs_career"
 
-//Data Base Credentials
-DB_HOST=""
-DB_USER=""
-DB_PORT=
-DB_PASSWORD=""
-DB_NAME=""
-//
 
-JWT_KEY=""
+JWT_KEY=hello143
