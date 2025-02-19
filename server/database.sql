@@ -19,7 +19,8 @@ CREATE TABLE jobpost(
     job_budget VARCHAR(255) ,
     job_create_date TEXT ,
     job_close_date TEXT ,
-    job_status TEXT 
+    job_status TEXT ,
+    job_created_by TEXT ,
     );
 
 

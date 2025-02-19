@@ -666,6 +666,7 @@ import { ToastContainer, toast } from "react-toastify";
 import EditJobPost from "../components/EditJobPost";
 import ViewJobPost from "../components/ViewJobPost";
 import { Edit, Eye, EyeClosed } from "lucide-react";
+import CloseIcon from "@mui/icons-material/Close";
 
 function JobPost() {
   const customStyles = {
@@ -731,6 +732,11 @@ function JobPost() {
     {
       name: "Experience",
       selector: (row) => row.job_experience_level,
+      sortable: true,
+    },
+    {
+      name: "Created By",
+      selector: (row) => row.job_created_by,
       sortable: true,
     },
     {
@@ -1008,7 +1014,7 @@ function JobPost() {
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold">Candidates</h2>
                 <button onClick={() => setViewCandidate("")}>
-                  <EyeClosed />
+                  <CloseIcon />
                 </button>
               </div>
               <hr />

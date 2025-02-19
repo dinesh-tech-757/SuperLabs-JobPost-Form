@@ -17,10 +17,11 @@ const postJob = async (req, res) => {
       job_create_date,
       job_close_date,
       job_status,
+      job_created_by,
     } = req.body;
 
     const newJob = await client.query(
-      `INSERT INTO jobpost (job_title,job_location_type,job_category,job_type,job_location,job_experience_level,job_technical_skills,job_education_qualification,job_description,job_interview_rounds,job_budget,job_create_date,job_close_date,job_status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+      `INSERT INTO jobpost (job_title,job_location_type,job_category,job_type,job_location,job_experience_level,job_technical_skills,job_education_qualification,job_description,job_interview_rounds,job_budget,job_create_date,job_close_date,job_status,job_created_by) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *`,
       [
         job_title,
         job_location_type,
@@ -36,12 +37,13 @@ const postJob = async (req, res) => {
         job_create_date,
         job_close_date,
         job_status,
+        job_created_by,
       ]
     );
 
     res.json(newJob.rows[0]);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).json({ message: "Failed to create job posting" });
   }
 };
@@ -84,6 +86,7 @@ const updatJobPost = async (req, res) => {
       job_create_date,
       job_close_date,
       job_status,
+      job_created_by,
     } = req.body;
 
     const { id } = req.params;
@@ -103,8 +106,9 @@ const updatJobPost = async (req, res) => {
             job_budget=$11,
             job_create_date=$12,  
             job_close_date=$13,  
-            job_status=$14
-            WHERE job_id = $15 
+            job_status=$14,
+            job_created_by=$15,
+            WHERE job_id = $16 
             RETURNING *`,
       [
         job_title,
@@ -121,6 +125,7 @@ const updatJobPost = async (req, res) => {
         job_create_date,
         job_close_date,
         job_status,
+        job_created_by,
         id,
       ]
     );
