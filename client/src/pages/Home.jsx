@@ -5,7 +5,7 @@ import { FaCaretRight } from "react-icons/fa6";
 import { MdWorkOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const jobUrl = import.meta.env.VITE_JOBS_URL;
+const jobUrl = import.meta.env.VITE_JOB_URL;
 const locationUrl = import.meta.env.VITE_LOCATION_URL;
 const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
 

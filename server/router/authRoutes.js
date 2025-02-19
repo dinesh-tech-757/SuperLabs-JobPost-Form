@@ -7,11 +7,15 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
+const userName = process.env.USERNAME
+const userEmail = process.env.EMAIL
+const userPassword = process.env.PASSWORD
+
 // Default values
 const DEFAULT_USER = {
-    username: "admin@admin",
-    email: "admin@superlabs.com",
-    password: "supersecret"
+    username: userName,
+    email: userEmail,
+    password: userPassword
 };
 
 // Function to create default user if not exists

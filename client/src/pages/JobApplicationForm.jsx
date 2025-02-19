@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL
+
 function JobApplicationForm() {
   const { job } = useParams();
 
@@ -35,7 +37,7 @@ function JobApplicationForm() {
       data.append(key, formData[key]);
     });
 
-    await axios.post("http://localhost:3000/candidates", data);
+    await axios.post(candidatesUrl, data);
 
     setFormData({
       first_name: "",

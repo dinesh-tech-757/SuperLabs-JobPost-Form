@@ -20,7 +20,7 @@ CREATE TABLE jobpost(
     job_create_date TEXT ,
     job_close_date TEXT ,
     job_status TEXT ,
-    job_created_by TEXT ,
+    job_created_by TEXT 
     );
 
 
