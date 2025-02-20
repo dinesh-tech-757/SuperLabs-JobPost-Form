@@ -3,17 +3,9 @@ import axios from "axios";
 import { Eye } from "lucide-react";
 import ViewCandidate from "../components/ViewCandidate";
 
+const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL
+
 export default function Candidates() {
-  //   const [formData, setFormData] = useState({
-  //     first_name: "",
-  //     last_name: "",
-  //     email: "",
-  //     phone: "",
-  //     linkedin: "",
-  //     website: "",
-  //     resume: null,
-  //     cover: null,
-  //   });
 
   const [candidates, setCandidates] = useState([]);
   const [viewId, setViewId] = useState();
@@ -23,7 +15,7 @@ export default function Candidates() {
   }, []);
 
   const fetchCandidates = async () => {
-    const response = await axios.get("http://localhost:3000/candidates");
+    const response = await axios.get(candidatesUrl);
     setCandidates(response.data);
   };
 
@@ -69,7 +61,7 @@ export default function Candidates() {
   });
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/candidates/${id}`);
+    await axios.delete(`${candidatesUrl}/${id}`);
     fetchCandidates();
   };
 
