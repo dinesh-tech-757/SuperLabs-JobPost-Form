@@ -485,7 +485,7 @@ import { Link } from "react-router-dom";
 
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 
-const jobUrl = import.meta.env.VITE_JOBS_URL;
+// const jobUrl = import.meta.env.VITE_JOBS_URL;
 const jobUrl = import.meta.env.VITE_JOB_URL;
 const locationUrl = import.meta.env.VITE_LOCATION_URL;
 const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
@@ -563,7 +563,7 @@ const Home = () => {
 
   const filteredJobs = jobs?.filter((job) => {
     const matchesSearch =
-      job.job_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.job_title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       job.job_technical_skills.some((skill) =>
         skill.toLowerCase().includes(searchQuery.toLowerCase())
       );
