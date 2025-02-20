@@ -569,7 +569,7 @@ import axios from "axios";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL;
+const candiUrl = import.meta.env.VITE_CANDIDATES_URL;
 
 function JobApplicationForm() {
   const { job } = useParams();

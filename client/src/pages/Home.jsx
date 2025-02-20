@@ -9,7 +9,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import React from "react";
 import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
+// import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 
 // const jobUrl = import.meta.env.VITE_JOBS_URL;
 const jobUrl = import.meta.env.VITE_JOB_URL;
