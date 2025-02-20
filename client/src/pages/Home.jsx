@@ -126,36 +126,6 @@ const Home = () => {
   );
 
   return (
-    <main className="px-16 py-3 grid grid-cols-[1fr_4.5fr] gap-4">
-      <section className="py-2">
-        <h3 className="font-medium text-gray-500">
-          {filteredJobs.length} jobs
-        </h3>
-
-  const filteredCategories = category.filter((cat) =>
-    cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
-  );
-
-  const indexOfLastJob = currentPage * jobsPerPage;
-  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-
-  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const nextPage = () => {
-    if (currentPage < Math.ceil(filteredJobs.length / jobsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  return (
     <main
       className={` ${
         openLeft
