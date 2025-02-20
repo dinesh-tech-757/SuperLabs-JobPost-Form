@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { useState } from "react";
 // import axios from "axios";
 // import { useNavigate } from "react-router-dom";
@@ -224,11 +225,13 @@
 // };
 
 // export default Login;
+=======
+>>>>>>> f436d7b1523e87b49844dab7ee2346e26942feab
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const loginUrl = import.meta.env.VITE_AUTH_URL;
+const loginUrl = import.meta.env.VITE_LOGIN_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -275,6 +278,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(loginUrl, values);
+      console.log(response.data)
       console.log(response);
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);

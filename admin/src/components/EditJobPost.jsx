@@ -13,6 +13,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import "../index.css";
 
+const jobUrl = import.meta.env.VITE_JOB_URL
+const categoryUrl = import.meta.env.VITE_CATEGORY_URL
+const locationUrl = import.meta.env.VITE_LOCATION_URL
+
 function EditJobPost({
   setOpen,
   handleOpen,
@@ -57,7 +61,7 @@ function EditJobPost({
 
   const fetchSingleJobPost = async () => {
     const jobpost = await axios.get(
-      `http://localhost:3000/api/v1/jobpost/${editId}`
+      `${jobUrl}/${editId}`
     );
     setEditJobPost(jobpost.data);
 
@@ -99,7 +103,7 @@ setCreateDate(jobpost.data.job_create_date)
 
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/v1/category")
+    axios.get(categoryUrl)
     .then((response) => {
       setCategory(response.data);
       })
@@ -107,7 +111,7 @@ setCreateDate(jobpost.data.job_create_date)
   },[setCategory])
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/v1/location")
+    axios.get(locationUrl)
     .then((response) => {
       setLocation(response.data);
       })
@@ -250,7 +254,7 @@ setCreateDate(jobpost.data.job_create_date)
     e.preventDefault();
     await axios
       .put(
-        `http://localhost:3000/api/v1/jobpost/${editId}`,
+        `${jobUrl}/${editId}`,
         {
           job_title: editJobPost.job_title,
           job_location_type: selectedJobLocationTypeValues,

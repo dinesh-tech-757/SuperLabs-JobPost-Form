@@ -10,6 +10,10 @@ import {
   import { useEffect, useState } from "react";
   import "react-quill/dist/quill.snow.css"; // Import Quill styles
   import "../index.css";
+
+const jobUrl = import.meta.env.VITE_JOB_URL
+const categoryUrl = import.meta.env.VITE_CATEGORY_URL
+const locationUrl = import.meta.env.VITE_LOCATION_URL
   
   function viewJobPost({
     setOpen,
@@ -49,7 +53,7 @@ import {
   
     const fetchSingleJobPost = async () => {
       const jobpost = await axios.get(
-        `http://localhost:3000/api/v1/jobpost/${viewId}`
+        `${jobUrl}/${viewId}`
       );
       console.log(jobpost);
       setEditJobPost(jobpost.data);
@@ -92,7 +96,7 @@ import {
   
   
     useEffect(()=>{
-      axios.get("http://localhost:3000/api/v1/category")
+      axios.get(categoryUrl)
       .then((response) => {
         setCategory(response.data);
         })
@@ -100,7 +104,7 @@ import {
     },[setCategory])
   
     useEffect(()=>{
-      axios.get("http://localhost:3000/api/v1/location")
+      axios.get(locationUrl)
       .then((response) => {
         setLocation(response.data);
         })

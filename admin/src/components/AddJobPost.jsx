@@ -13,6 +13,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import "../index.css";
 
+const categoryUrl = import.meta.env.VITE_CATEGORY_URL
+const locationUrl = import.meta.env.VITE_LOCATION_URL
+const jobUrl = import.meta.env.VITE_JOB_URL
+
 function AddJobPost({ job, setJob, setIsAdd }) {
   const [category, setCategory] = useState([]);
   const [location, setLocation] = useState([]);
@@ -159,13 +163,13 @@ function AddJobPost({ job, setJob, setIsAdd }) {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v1/category").then((response) => {
+    axios.get(categoryUrl).then((response) => {
       setCategory(response.data);
     });
   }, [setCategory]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v1/location").then((response) => {
+    axios.get(locationUrl).then((response) => {
       setLocation(response.data);
     });
   }, [setLocation]);
@@ -175,7 +179,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
 
     axios
       .post(
-        "http://localhost:3000/api/v1/jobpost",
+        jobUrl,
         {
           job_title: newJobPost.job_title,
           job_location_type: locationType,

@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+
+const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL
+const uploadsUrl = import.meta.env.VITE_UPLOADS_URL
+
 const ViewCandidate = ({ id, setViewId }) => {
   const [candidateData, setCandidateData] = useState();
 
   const fetchCandidate = async () => {
-    const res = await axios.get(`http://localhost:3000/candidates/${id}`);
+    const res = await axios.get(`${candidatesUrl}/${id}`);
     setCandidateData(res.data);
   };
-
-  console.log(candidateData);
 
   useEffect(() => {
     fetchCandidate();
@@ -75,8 +77,8 @@ const ViewCandidate = ({ id, setViewId }) => {
           <h3 className="text-xl font-semibold text-gray-800">Documents</h3>
           <p className="text-gray-600 mt-2">
             <a
-              href={`http://localhost:3000/uploads/${candidateData?.resume}`}
-              download={`http://localhost:3000/uploads/${candidateData?.resume}`}
+              href={`${uploadsUrl}/${candidateData?.resume}`}
+              download={`${uploadsUrl}/${candidateData?.resume}`}
               target="_blank"
             >
               Resume
@@ -84,8 +86,8 @@ const ViewCandidate = ({ id, setViewId }) => {
           </p>
           <p className="text-gray-600">
             <a
-              href={`http://localhost:3000/uploads/${candidateData?.cover}`}
-              download={`http://localhost:3000/uploads/${candidateData?.cover}`}
+              href={`${uploadsUrl}/${candidateData?.cover}`}
+              download={`${uploadsUrl}/${candidateData?.cover}`}
               target="_blank"
             >
               Cover Letter

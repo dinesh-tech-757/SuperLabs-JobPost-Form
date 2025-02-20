@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 
+const jobUrl = import.meta.env.VITE_JOB_URL
+
 const JobDetail = () => {
   const { id } = useParams();
 
@@ -16,7 +18,7 @@ const JobDetail = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/jobpost/${id}`
+          `${jobUrl}/${id}`
         );
         setJobDetail(response.data);
         console.log(response.data);

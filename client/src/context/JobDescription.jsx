@@ -1,13 +1,15 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
+const jobUrl = import.meta.env.VITE_JOB_URL
+
 export const jobpostContext = createContext();
 
 const JobPost = ({ children }) => {
   const [jobpost, setJobPost] = useState([]);
 
   const fetchAllJobPost = async () => {
-    const res = await axios("http://localhost:3000/api/v1/jobpost");
+    const res = await axios(jobUrl);
     setJobPost(res.data);
   };
 

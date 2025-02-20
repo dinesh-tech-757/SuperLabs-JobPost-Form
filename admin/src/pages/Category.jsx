@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Edit, Trash2 } from "lucide-react";
 
-const CATEGORY_API = import.meta.env.CATEGORY_API;
+const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
 
 const AddCategory = ({ onClose, onSubmit, editData }) => {
   const [categoryName, setCategoryName] = useState(editData ? editData.category_title : "");
@@ -17,7 +17,7 @@ const AddCategory = ({ onClose, onSubmit, editData }) => {
     e.preventDefault();
     if (editData && editData.category_id) {
       axios
-        .put(`http://localhost:3000/api/v1/category/${editData.category_id}`, { category_title: categoryName })
+        .put(`${categoryUrl}/${editData.category_id}`, { category_title: categoryName })
         .then((res) => {
           onSubmit(res.data, "update");
           onClose();
@@ -25,7 +25,7 @@ const AddCategory = ({ onClose, onSubmit, editData }) => {
         .catch((err) => console.log("Error updating category:", err));
     } else {
       axios
-        .post(`http://localhost:3000/api/v1/category`, { category_title: categoryName })
+        .post(categoryUrl, { category_title: categoryName })
         .then((res) => {
           onSubmit(res.data, "add");
           setCategoryName("");
@@ -72,7 +72,7 @@ const Category = () => {
 
   const fetchCategories = () => {
     axios
-      .get(`http://localhost:3000/api/v1/category`)
+      .get(categoryUrl)
       .then((res) => {
         setCategories(Array.isArray(res.data) ? res.data : []);
       })
@@ -97,7 +97,7 @@ const Category = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
       axios
-        .delete(`http://localhost:3000/api/v1/category/${id}`)
+        .delete(`${categoryUrl}/${id}`)
         .then(() => {
           setCategories(categories.filter((cat) => cat.category_id !== id));
         })
