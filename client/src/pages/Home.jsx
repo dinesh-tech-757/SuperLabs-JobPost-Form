@@ -489,7 +489,7 @@ import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 
-const jobUrl = import.meta.env.VITE_JOBS_URL;
+
 const jobUrl = import.meta.env.VITE_JOB_URL;
 const locationUrl = import.meta.env.VITE_LOCATION_URL;
 const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
@@ -607,17 +607,6 @@ const Home = () => {
     cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
   );
 
-  return (
-    <main className="px-16 py-3 grid grid-cols-[1fr_4.5fr] gap-4">
-      <section className="py-2">
-        <h3 className="font-medium text-gray-500">
-          {filteredJobs.length} jobs
-        </h3>
-
-  const filteredCategories = category.filter((cat) =>
-    cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
-  );
-
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
 
@@ -694,7 +683,7 @@ const Home = () => {
                   ))}
                 {filteredLocations.length > 5 && (
                   <button
-                    className="text-blue-500 text-sm mt-2"
+                    className="text-red-500 text-sm mt-2"
                     onClick={() => setShowAllLocations(!showAllLocations)}
                   >
                     {showAllLocations ? "View Less" : "View More"}
