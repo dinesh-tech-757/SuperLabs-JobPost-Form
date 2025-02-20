@@ -29,51 +29,60 @@ const JobDetail = () => {
     fetchData();
   }, [id]);
   return (
-    <main className="px-20 py-10">
-      <p className="text-red-500 flex items-center text-lg font-semibold">
-        <FaChevronLeft /> Back to Careers Page
+    <main className="sm:px-10 md:px-20 py-10">
+      <p onClick={() => navigate(`/`)} className="text-red-500 flex items-center text-lg font-semibold cursor-pointer">
+        <FaChevronLeft  /> Back to Careers Page
       </p>
+      
 
-      <div className="py-10">
+      <div className="py-7">
         <h1 className="text-3xl font-semibold">{jobDetail.job_title}</h1>
-        <div className="py-4 pb-6">
-          <ul className="list-none text-red-500 font-bold flex flex-wrap w-[70%] gap-4">
-            <li className="inline-flex gap-1 w-auto">
+        <div className="py-4 pb-6 gap-5">
+          <ul className="list-none text-red-500 font-bold  space-y-3 ">
+          <div className="flex sm:flex-col lg:flex-row gap-3 lg:space-x-5">
+
+         
+            <li className=" gap-1 w-auto">
               Job Type:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_type}
               </span>
             </li>
-            <li className="inline-flex gap-1 w-auto">
+            <li className=" gap-1 w-auto">
               Qualifications:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_education_qualification}
               </span>
             </li>
-            <li className="inline-flex gap-1 w-auto">
+            <li className=" gap-1 w-auto">
               Experience Level:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_experience_level} Years
               </span>
             </li>
-            <li className="inline-flex gap-1 w-auto">
+            </div>
+            <div className="flex sm:flex-col lg:flex-row gap-3 lg:space-x-5">
+
+            
+            <li className=" gap-1 w-auto">
               Location:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_location}
               </span>
             </li>
-            <li className="inline-flex gap-1 w-auto">
+            <li className=" gap-1 w-auto">
               Salery:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_budget}
               </span>
             </li>
-            <li className="inline-flex gap-1 w-auto">
+            <li className=" gap-1 w-auto">
               Date Posted:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_create_date}
               </span>
             </li>
+            </div>
           </ul>
         </div>
         {/* <Link to={`/jobform/${id}`} className="bg-red-500 text-white text-sm font-semibold px-6 py-3 rounded-lg">Apply Now</Link> */}
@@ -81,14 +90,14 @@ const JobDetail = () => {
         {Date.now() > jobDetail?.job_close_date ? (
           <button
             disabled
-            className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+            className="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700"
           >
             Closed
           </button>
         ) : (
           <button
-            onClick={() => navigate(`/apply/${jobDetail?.job_title}`)}
-            className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+            onClick={() => navigate(`/job/${jobDetail.job_id}/apply`)}
+            className=" font-bold bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700"
           >
             Apply Now
           </button>
@@ -230,6 +239,15 @@ const JobDetail = () => {
             here
           </li>
           <li>Massive career growth starting at the ground level</li>
+        </ul>
+        <br />
+        <br />
+        <p>
+          <b>Job Description</b>
+        </p>
+        <br />
+        <ul>
+        <p dangerouslySetInnerHTML={{__html: jobDetail.job_description}} ></p>
         </ul>
       </div>
     </main>

@@ -282,6 +282,16 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 />
                 Remote
               </label>
+              <br />
+              <label>
+                <input
+                  type="checkbox"
+                  value="Hybrid"
+                  className="mr-2"
+                  onChange={(event) => handleLocationType(event)}
+                />
+                Hybrid
+              </label>
             </div>
           </div>
 
@@ -296,7 +306,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
             <div className="flex text-base flex-col items-start font-Josefin ">
               <select
                 id="statusDropdown"
-                className="p-2 border border-gray-300 "
+                className="p-2 border border-gray-300 outline-none"
                 name="job_category"
                 value={newJobPost.job_category}
                 onChange={(e) => handleSingleFieldChange(e)}
@@ -371,10 +381,10 @@ function AddJobPost({ job, setJob, setIsAdd }) {
             >
               Job Location
             </Typography>
-            <div className="flex text-base flex-col items-start font-Josefin ">
+            <div className="flex text-base flex-col items-start font-Josefin outline-none">
               <select
                 id="statusDropdown"
-                className="p-2 border border-gray-300 "
+                className="p-2 border border-gray-300 outline-none"
                 name="job_location"
                 value={newJobPost.job_location}
                 onChange={(e) => handleSingleFieldChange(e)}
@@ -601,12 +611,12 @@ function AddJobPost({ job, setJob, setIsAdd }) {
             <div className="flex text-base flex-col items-start font-Josefin ">
               <select
                 id="statusDropdown"
-                className="p-2 border border-gray-300 "
+                className="p-2 border border-gray-300 outline-none"
                 name="job_status"
                 value={newJobPost.job_status}
                 onChange={(e) => handleSingleFieldChange(e)}
               >
-                <option>Choose Status</option>
+                <option name="null">Choose Status</option>
                 <option name="Active" value="Active">
                   Active
                 </option>
