@@ -3,35 +3,81 @@ import { useEffect, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 
-const jobUrl = import.meta.env.VITE_JOB_URL
+const jobUrl = import.meta.env.VITE_JOB_URL;
 
 const JobDetail = () => {
   const { id } = useParams();
 
   const [jobDetail, setJobDetail] = useState({});
 
-  console.log(jobDetail);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${jobUrl}/${id}`
-        );
+        const response = await axios.get(`${jobUrl}/${id}`);
         setJobDetail(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, [id]);
+
+  const jobSchema = {
+    "@context": "http://schema.org",
+    "@type": "JobPosting",
+    title: jobDetail.job_title,
+    description: `
+      ${jobDetail.job_description}
+      <br />
+      <b>Qualifications:</b>
+      <ul>
+        <li>Bachelor's degree in Information Technology, Business, or a related field.</li>
+        <li>Proven experience in partnership development, vendor management, or a related role.</li>
+        <li>Strong understanding of IT and technology trends</li>
+        <li>Excellent communication and negotiation skills.</li>
+        <li>Detail-oriented with strong organizational and project management abilities.</li>
+      </ul>
+    `,
+    datePosted: jobDetail.job_create_date,
+    validThrough: jobDetail.job_close_date,
+    employmentType: jobDetail.job_type,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "SuperLabs",
+      sameAs: "https://www.superlabs.com",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "123 Main Street",
+        addressLocality: jobDetail.job_location,
+        addressRegion: "CA",
+        postalCode: "94101",
+        addressCountry: "US",
+      },
+    },
+    baseSalary: {
+      "@type": "MonetaryAmount",
+      currency: "USD",
+      value: {
+        "@type": "QuantitativeValue",
+        value: jobDetail.job_budget,
+        unitText: "YEAR",
+      },
+    },
+  };
+
   return (
-    <main className="sm:px-10 md:px-20 py-10">
-      <p onClick={() => navigate(`/`)} className="text-red-500 flex items-center text-lg font-semibold cursor-pointer">
-        <FaChevronLeft  /> Back to Careers Page
+    <main className="px-20 py-10">
+      <script type="application/ld+json">{JSON.stringify(jobSchema)}</script>
+      <p
+        className="text-red-500 flex items-center text-lg font-semibold cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
+        <FaChevronLeft /> Back to Careers Page
       </p>
       
 
@@ -70,8 +116,8 @@ const JobDetail = () => {
                 {jobDetail.job_location}
               </span>
             </li>
-            <li className=" gap-1 w-auto">
-              Salery:{" "}
+            <li className="inline-flex gap-1 w-auto">
+              Salary:{" "}
               <span className="text-black font-normal">
                 {jobDetail.job_budget}
               </span>
@@ -85,9 +131,8 @@ const JobDetail = () => {
             </div>
           </ul>
         </div>
-        {/* <Link to={`/jobform/${id}`} className="bg-red-500 text-white text-sm font-semibold px-6 py-3 rounded-lg">Apply Now</Link> */}
 
-        {Date.now() > jobDetail?.job_close_date ? (
+        {Date.now() > new Date(jobDetail?.job_close_date) ? (
           <button
             disabled
             className="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700"

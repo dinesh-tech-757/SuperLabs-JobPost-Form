@@ -9,6 +9,9 @@ import CategoryIcon from "@mui/icons-material/Category";
 import React from "react";
 import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
+
+// const jobUrl = import.meta.env.VITE_JOBS_URL;
 const jobUrl = import.meta.env.VITE_JOB_URL;
 const locationUrl = import.meta.env.VITE_LOCATION_URL;
 const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
@@ -35,10 +38,6 @@ const Home = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [showAllLocations, setShowAllLocations] = useState(false);
   const [showAllCategories, setShowAllCategories] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 10;
-
-  const jobListRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,6 +125,17 @@ const Home = () => {
     cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
   );
 
+  return (
+    <main className="px-16 py-3 grid grid-cols-[1fr_4.5fr] gap-4">
+      <section className="py-2">
+        <h3 className="font-medium text-gray-500">
+          {filteredJobs.length} jobs
+        </h3>
+
+  const filteredCategories = category.filter((cat) =>
+    cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
+  );
+
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
 
@@ -167,7 +177,7 @@ const Home = () => {
 
           <div>
             <h3
-              className="font-medium flex gap-2 text-red-500 text-lg py-3 items-center cursor-pointer"
+              className="font-medium flex gap-2 text-blue-500 text-lg py-3 items-center cursor-pointer"
               onClick={() => setIsLocationOpen(!isLocationOpen)}
             >
               <p>Location</p>
@@ -191,7 +201,7 @@ const Home = () => {
                     >
                       <input
                         type="checkbox"
-                        className="accent-red-600 h-5 w-5"
+                        className="accent-blue-600 h-5 w-5"
                         checked={selectedLocations.includes(loc.location_title)}
                         onChange={() =>
                           handleLocationChange(loc.location_title)
@@ -202,7 +212,7 @@ const Home = () => {
                   ))}
                 {filteredLocations.length > 5 && (
                   <button
-                    className="text-red-500 text-sm mt-2"
+                    className="text-blue-500 text-sm mt-2"
                     onClick={() => setShowAllLocations(!showAllLocations)}
                   >
                     {showAllLocations ? "View Less" : "View More"}
@@ -214,7 +224,7 @@ const Home = () => {
 
           <div>
             <h3
-              className="font-medium flex  gap-2 text-red-500 text-lg py-3 items-center cursor-pointer"
+              className="font-medium flex  gap-2 text-blue-500 text-lg py-3 items-center cursor-pointer"
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
             >
               <p>Job Categories</p>
@@ -238,7 +248,7 @@ const Home = () => {
                     >
                       <input
                         type="checkbox"
-                        className="accent-red-600 h-5 w-5"
+                        className="accent-blue-600 h-5 w-5"
                         checked={selectedCategories.includes(
                           cat.category_title
                         )}
@@ -251,7 +261,7 @@ const Home = () => {
                   ))}
                 {filteredCategories.length > 5 && (
                   <button
-                    className="text-red-500 text-sm mt-2"
+                    className="text-blue-500 text-sm mt-2"
                     onClick={() => setShowAllCategories(!showAllCategories)}
                   >
                     {showAllCategories ? "View Less" : "View More"}
