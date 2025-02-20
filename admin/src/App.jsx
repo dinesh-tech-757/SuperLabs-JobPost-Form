@@ -20,7 +20,7 @@ function App() {
   const [job, setJob] = useState([]);
 
   const fetchAllData = async () => {
-    const res = await axios.get("http://localhost:3000/api/v1/jobpost");
+    const res = await axios.get("https://superlabs-backend.onrender.com/api/v1/jobpost");
     setJob(res.data);
   };
 
@@ -28,8 +28,9 @@ function App() {
     fetchAllData();
   }, []);
 
-  const name = localStorage.getItem("email")
+  const name = localStorage.getItem("email");
 
+<<<<<<< HEAD
       if (name == "admin@admin.com") {
         return (
           <MantineProvider>
@@ -72,42 +73,59 @@ function App() {
                   {/* <Route path="users" element={<Users />} /> */}
                   <Route path="candidates" element={<Candidates />} />
                   <Route path="users" element={<Users />} />
+=======
+  if (name == "admin@superlabs.com") {
+    return (
+      <MantineProvider>
+        <div className="font-Josefin">
+          <ThemeContext.Provider value={{ job, setJob }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<Home />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="jobpost" element={<JobPost />} />
+                    <Route path="location" element={<Location />} />
+                    <Route path="category" element={<Category />} />
+                    <Route path="candidates" element={<Candidates />} />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="*" element={<NoPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeContext.Provider>
-      </div>
-    </MantineProvider>
-        )
-      };
-  
-
-  // return (
-  //   <MantineProvider>
-  //     <div className="font-Josefin">
-  //       <ThemeContext.Provider value={{ job, setJob }}>
-  //         <BrowserRouter>
-  //           <Routes>
-  //             <Route path="/login" element={<LoginPage/>} />
-  //             <Route element={<ProtectedRoute />}>
-  //               <Route path="/" element={<Home />}>
-  //                 <Route index element={<Dashboard />} />
-  //                 <Route path="jobpost" element={<JobPost />} />
-  //                 <Route path="location" element={<Location />} />
-  //                 <Route path="category" element={<Category />} />
-  //                 <Route path="users" element={<Users />} />
-  //                 <Route path="candidates" element={<Candidates />} />
-  //               </Route>
-  //             </Route>
-  //             <Route path="*" element={<NoPage />} />
-  //           </Routes>
-  //         </BrowserRouter>
-  //       </ThemeContext.Provider>
-  //     </div>
-  //   </MantineProvider>
-  // );
+                <Route path="*" element={<NoPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ThemeContext.Provider>
+        </div>
+      </MantineProvider>
+    );
+  } else {
+    return (
+      <MantineProvider>
+        <div className="font-Josefin">
+          <ThemeContext.Provider value={{ job, setJob }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<Home />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="jobpost" element={<JobPost />} />
+                    <Route path="location" element={<Location />} />
+                    <Route path="category" element={<Category />} />
+                    {/* <Route path="users" element={<Users />} /> */}
+                    <Route path="candidates" element={<Candidates />} />
+                  </Route>
+>>>>>>> f436d7b1523e87b49844dab7ee2346e26942feab
+                </Route>
+                <Route path="*" element={<NoPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ThemeContext.Provider>
+        </div>
+      </MantineProvider>
+    );
+  }
 }
 
 export default App;

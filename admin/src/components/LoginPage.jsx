@@ -2,34 +2,39 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const loginUrl = import.meta.env.VITE_AUTH_URL;
+const loginUrl = import.meta.env.VITE_LOGIN_URL;
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = useState({
-      email: '',
-      password: ''
-  })
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChanges = (e) => {
-    setValues({...values, [e.target.name]:e.target.value})
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post(loginUrl, values);
-        console.log(response)
-        if (response.status === 200) {
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('email', response.data.data.rows[0].email)
-          localStorage.setItem('username', response.data.data.rows[0].username)
-            navigate('/')
-        }
+      const response = await axios.post(loginUrl, values);
+      console.log(response.data)
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("username", response.data.user.username);
+        navigate("/");
+      }
     } catch (error) {
-        console.error("Login error:", error);
-        alert("Login failed. Please check your username and password and try again.")
+      console.error("Login error:", error);
+      alert(
+        "Login failed. Please check your username and password and try again."
+      );
     }
-  }
-  const [showPassword, setShowPassword] = useState(false);
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -51,7 +56,10 @@ const Login = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 text-sm font-medium mb-2"
+            >
               Email
             </label>
             <input
@@ -65,7 +73,10 @@ const Login = () => {
           </div>
 
           <div className="mb-4 relative">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 text-sm font-medium mb-2"
+            >
               Password
             </label>
             <input
@@ -82,12 +93,15 @@ const Login = () => {
               className="absolute right-3 top-10 text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? "🙈" : "👁"}
             </button>
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">
+          <button
+            type="submit"
+            className="w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition"
+          >
             Continue
           </button>
 

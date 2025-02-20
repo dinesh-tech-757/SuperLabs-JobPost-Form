@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Plus, Edit, Trash2 } from "lucide-react";
 
-const API = import.meta.env.LOCATION_API;
+const locationUrl = import.meta.env.VITE_LOCATION_URL;
 
 const AddLocation = ({ onClose, onSubmit, editData }) => {
   const [locationName, setLocationName] = useState(editData?.location_title || "");
@@ -17,8 +17,8 @@ const AddLocation = ({ onClose, onSubmit, editData }) => {
     e.preventDefault();
     try {
       const response = editData
-        ? await axios.put(`http://localhost:3000/api/v1/location/${editData.location_id}`, { location_title: locationName })
-        : await axios.post(`http://localhost:3000/api/v1/location`, { location_title: locationName });
+        ? await axios.put(`${locationUrl}/${editData.location_id}`, { location_title: locationName })
+        : await axios.post(locationUrl, { location_title: locationName });
 
       onSubmit(response.data, editData ? "update" : "add");
       setLocationName("");
@@ -65,7 +65,7 @@ const Location = () => {
 
   const fetchLocations = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/v1/location`);
+      const res = await axios.get(locationUrl);
       setLocations(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
       console.error("Error fetching locations:", error);
@@ -92,7 +92,7 @@ const Location = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this location?")) {
       try {
-        await axios.delete(`http://localhost:3000/api/v1/location/${id}`);
+        await axios.delete(`${locationUrl}/${id}`);
         setLocations((prev) => prev.filter((loc) => loc.location_id !== id));
       } catch (error) {
         console.error("Error deleting location:", error);

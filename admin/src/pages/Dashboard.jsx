@@ -6,6 +6,8 @@ import { FaUserAlt } from "react-icons/fa";
 import axios from "axios";
 import { ThemeContext } from "../App";
 
+const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL
+
 export default function Dashboard() {
   const { job } = useContext(ThemeContext);
 
@@ -18,7 +20,7 @@ export default function Dashboard() {
   }, []);
 
   const fetchCandidates = async () => {
-    const response = await axios.get("http://localhost:3000/candidates");
+    const response = await axios.get(candidatesUrl);
     setCandidates(response.data);
   };
   const name = localStorage.getItem("username")

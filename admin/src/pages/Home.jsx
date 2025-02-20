@@ -3,12 +3,14 @@ import Sidebar from "../components/Sidebar";
 import axios from "axios";
 import { useEffect } from "react";
 
+const authHomeUrl = import.meta.env.VITE_AUTH_HOME_URL
+
 function Home() {
   const navigate = useNavigate()
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem('token')
-    const response = await axios.get('http://localhost:3000/auth/home', {
+    const response = await axios.get(authHomeUrl, {
       headers: {
         "Authorization" : `Bearer ${token}`
       }
