@@ -30,49 +30,6 @@ function App() {
 
   const name = localStorage.getItem("email");
 
-<<<<<<< HEAD
-      if (name == "vinisha@gmail.com") {
-        return (
-          <MantineProvider>
-      <div className="font-Josefin">
-        <ThemeContext.Provider value={{ job, setJob }}>
-          <BrowserRouter>
-            <Routes>
-                  <Route path="users" element={<Users />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Home />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="jobpost" element={<JobPost />} />
-                  <Route path="location" element={<Location />} />
-                  <Route path="category" element={<Category />} />
-                  <Route path="candidates" element={<Candidates />} />
-                </Route>
-              </Route>
-              <Route path="*" element={<NoPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeContext.Provider>
-      </div>
-    </MantineProvider>
-        )
-      } else {
-        return (
-          <MantineProvider>
-      <div className="font-Josefin">
-        <ThemeContext.Provider value={{ job, setJob }}>
-          <BrowserRouter>
-            <Routes>
-                  <Route path="users" element={<Users />} />
-              <Route path="/login" element={<LoginPage/>} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Home />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="jobpost" element={<JobPost />} />
-                  <Route path="location" element={<Location />} />
-                  <Route path="category" element={<Category />} />
-                  <Route path="candidates" element={<Candidates />} />
-=======
   if (name == "admin@superlabs.com") {
     return (
       <MantineProvider>
@@ -115,7 +72,6 @@ function App() {
                     {/* <Route path="users" element={<Users />} /> */}
                     <Route path="candidates" element={<Candidates />} />
                   </Route>
->>>>>>> c60241abd1eaaf9bca2f40f0d3442814b9ae3d24
                 </Route>
                 <Route path="*" element={<NoPage />} />
               </Routes>
