@@ -199,7 +199,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
     if (!educationalValues.length)
       errors.job_education_qualification =
         "Education qualification is required.";
-    if (!newJobPost.job_description.trim())
+    if (newJobPost.job_description.trim() === "")
       errors.job_description = "Job description is required.";
     if (!newJobPost.job_interview_rounds)
       errors.job_interview_rounds = "Interview rounds must be specified.";
