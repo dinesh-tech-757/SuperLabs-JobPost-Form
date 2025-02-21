@@ -174,7 +174,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Forgot password error:", error);
-      // alert("Failed to send password reset email. Please try again.");
+      alert("Failed to send password reset email. Please try again.");
     }
   };
 
