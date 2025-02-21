@@ -203,8 +203,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
       errors.job_description = "Job description is required.";
     if (!newJobPost.job_interview_rounds)
       errors.job_interview_rounds = "Interview rounds must be specified.";
-    if (!newJobPost.job_budget || isNaN(newJobPost.job_budget))
-      errors.job_budget = "Valid budget is required.";
+
+    if (!newJobPost.job_budget) errors.job_budget = "Valid budget is required.";
+
     if (!createDate) errors.job_create_date = "Created date is required.";
     if (!closeDate) errors.job_close_date = "Closing date is required.";
     if (!newJobPost.job_status) errors.job_status = "Job status is required.";
@@ -292,7 +293,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               onChange={(e) => handleSingleFieldChange(e)}
             />
             {errors.job_title && (
-              <p className="text-red-500">{errors.job_title}</p>
+              <p className="text-red-500  text-sm">{errors.job_title}</p>
             )}
           </div>
 
@@ -326,7 +327,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </label>
             </div>
             {errors.job_location_type && (
-              <p className="text-red-500">{errors.job_location_type}</p>
+              <p className="text-red-500  text-sm">
+                {errors.job_location_type}
+              </p>
             )}
           </div>
 
@@ -344,6 +347,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 className="p-2 border border-gray-300 "
                 name="job_category"
                 value={newJobPost.job_category}
+                required
                 onChange={(e) => handleSingleFieldChange(e)}
               >
                 <option>Choose Your Job Category</option>
@@ -358,7 +362,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </select>
             </div>
             {errors.job_category && (
-              <p className="text-red-500">{errors.job_category}</p>
+              <p className="text-red-500  text-sm">{errors.job_category}</p>
             )}
           </div>
 
@@ -412,7 +416,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </label>
             </div>
             {errors.job_type && (
-              <p className="text-red-500">{errors.job_type}</p>
+              <p className="text-red-500  text-sm">{errors.job_type}</p>
             )}
           </div>
           <div>
@@ -430,6 +434,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 name="job_location"
                 value={newJobPost.job_location}
                 onChange={(e) => handleSingleFieldChange(e)}
+                required
               >
                 <option>Choose Your Job Location</option>
                 {location.map((location) => (
@@ -443,7 +448,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </select>
             </div>
             {errors.job_location && (
-              <p className="text-red-500">{errors.job_location}</p>
+              <p className="text-red-500 text-sm">{errors.job_location}</p>
             )}
           </div>
           <div>
@@ -464,7 +469,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               onChange={(e) => handleSingleFieldChange(e)}
             />
             {errors.job_experience_level && (
-              <p className="text-red-500">{errors.job_experience_level}</p>
+              <p className="text-red-500  text-sm">
+                {errors.job_experience_level}
+              </p>
             )}
           </div>
           <div>
@@ -503,7 +510,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </div>
             </div>
             {errors.job_technical_skills && (
-              <p className="text-red-500">{errors.job_technical_skills}</p>
+              <p className="text-red-500  text-sm">
+                {errors.job_technical_skills}
+              </p>
             )}
           </div>
           <div>
@@ -542,7 +551,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </div>
             </div>
             {errors.job_education && (
-              <p className="text-red-500">{errors.job_education}</p>
+              <p className="text-red-500  text-sm">{errors.job_education}</p>
             )}
           </div>
           <div className="font-Josefin">
@@ -584,7 +593,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               />
             </div>
             {errors.job_description && (
-              <p className="text-red-500">{errors.job_description}</p>
+              <p className="text-red-500  text-sm">{errors.job_description}</p>
             )}
           </div>
           <div>
@@ -622,12 +631,13 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               size="lg"
               placeholder="Enter Job Budget"
               name="job_budget"
+              type="text"
               className=" border-2 w-full text-base p-2 font-Josefin "
               value={newJobPost.job_budget}
               onChange={(e) => handleSingleFieldChange(e)}
             />
             {errors.job_budget && (
-              <p className="text-red-500">{errors.job_budget}</p>
+              <p className="text-red-500  text-sm">{errors.job_budget}</p>
             )}
           </div>
 
@@ -646,7 +656,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 onChange={(e) => handleCreatedDate(e)}
               />
               {errors.job_created_date && (
-                <p className="text-red-500">{errors.job_created_date}</p>
+                <p className="text-red-500  text-sm">
+                  {errors.job_created_date}
+                </p>
               )}
             </div>
           </div>
@@ -665,7 +677,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 onChange={(e) => handleCloseDate(e)}
               />
               {errors.job_close_date && (
-                <p className="text-red-500">{errors.job_close_date}</p>
+                <p className="text-red-500  text-sm">{errors.job_close_date}</p>
               )}
             </div>
           </div>
@@ -695,7 +707,7 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               </select>
             </div>
             {errors.job_status && (
-              <p className="text-red-500">{errors.job_status}</p>
+              <p className="text-red-500  text-sm">{errors.job_status}</p>
             )}
           </div>
         </DialogHeader>
