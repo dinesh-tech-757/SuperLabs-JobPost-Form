@@ -183,13 +183,17 @@ function AddJobPost({ job, setJob, setIsAdd }) {
     const errors = {};
 
     // Validation checks
-    if (!newJobPost.job_title.trim())
+    if (newJobPost.job_title === "")
       errors.job_title = "Job title is required.";
+
     if (!locationType.length)
       errors.job_location_type = "Select at least one location type.";
+
     if (!newJobPost.job_category)
       errors.job_category = "Job category is required.";
+
     if (!jobType.length) errors.job_type = "Select at least one job type.";
+
     if (!newJobPost.job_location)
       errors.job_location = "Job location is required.";
     if (!newJobPost.job_experience_level)
