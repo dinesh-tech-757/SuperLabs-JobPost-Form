@@ -100,9 +100,9 @@ const Home = () => {
     );
   };
 
-  const filteredJobs = jobs.filter((job) => {
+  const filteredJobs = jobs?.filter((job) => {
     const matchesSearch =
-      job.job_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.job_title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       job.job_technical_skills.some((skill) =>
         skill.toLowerCase().includes(searchQuery.toLowerCase())
       );
@@ -119,11 +119,11 @@ const Home = () => {
   });
 
   const filteredLocations = location.filter((loc) =>
-    loc.location_title.toLowerCase().includes(locationSearch.toLowerCase())
+    loc.location_title?.toLowerCase().includes(locationSearch.toLowerCase())
   );
 
   const filteredCategories = category.filter((cat) =>
-    cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
+    cat.category_title?.toLowerCase().includes(categorySearch.toLowerCase())
   );
 
   const indexOfLastJob = currentPage * jobsPerPage;
@@ -149,11 +149,11 @@ const Home = () => {
     <main
       className={` ${
         openLeft
-          ? "px-4 py-3 flex flex-col lg:flex-row gap-4 w-full h-full  fixed"
-          : "px-4 py-3 flex flex-col lg:flex-row  gap-4  "
+          ? "px-4 py-3 flex flex-col lg:flex-row gap-4 w-full h-full fixed "
+          : " px-4 py-3 flex flex-col lg:flex-row gap-4  "
       } ${
         openLeft2
-          ? "px-4 py-3 flex flex-col lg:flex-row gap-4 w-full h-full fixed"
+          ? "px-4 py-3 flex flex-col lg:flex-row gap-4 h-full w-full fixed "
           : "px-4 py-3 flex flex-col lg:flex-row gap-4  "
       }`}
     >
@@ -519,7 +519,7 @@ const Home = () => {
                           width="18"
                           height="18"
                           fill="#e60000"
-                          className="bi bi-geo-alt"
+                          class="bi bi-geo-alt"
                           viewBox="0 0 16 16"
                         >
                           <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />

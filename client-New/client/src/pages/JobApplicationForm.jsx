@@ -3,7 +3,7 @@ import axios from "axios";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const candiUrl = import.meta.env.VITE_CANDIDATES_URL;
+const candidatesUrl = import.meta.env.VITE_CANDIDATES_URL;
 
 function JobApplicationForm() {
   const { jobtitle } = useParams();
@@ -11,6 +11,7 @@ function JobApplicationForm() {
   console.log(jobtitle);
 
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -74,7 +75,7 @@ function JobApplicationForm() {
       data.append(key, formData[key]);
     });
 
-    await axios.post(candiUrl, data);
+    await axios.post(candidatesUrl, data);
 
     setFormData({
       first_name: "",

@@ -162,26 +162,6 @@ export default function Dashboard() {
 
   const name = localStorage.getItem("username");
 
-  const jobApplicationsData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-    datasets: [
-      {
-        label: "Job Applications",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-        data: [65, 59, 80, 81, 56, 55, 40],
-      },
-      {
-        label: "Job Interviews",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
-        data: [28, 48, 40, 19, 86, 27, 90],
-      },
-    ],
-  };
-
   return (
     <div className="p-6">
       <div className="flex justify-between items-center">
@@ -211,20 +191,6 @@ export default function Dashboard() {
           <p className="text-2xl">
             {job?.filter((j) => j.job_status === "Inactive").length}
           </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-5 mt-10">
-        <h1 className="text-2xl font-bold">Graphs</h1>
-        <div className="flex gap-2 flex-wrap items-center justify-between">
-          <div className="w-[400px] h-[400px] flex items-center justify-center">
-            <Bar data={jobApplicationsData} />
-          </div>
-          <div className="w-[400px] h-[400px] flex items-center justify-center">
-            <Doughnut data={jobApplicationsData} />
-          </div>
-          <div className="w-[400px] h-[400px] flex items-center justify-center">
-            <Line data={jobApplicationsData} />
-          </div>
         </div>
       </div>
     </div>
