@@ -20,7 +20,7 @@ function App() {
   const [job, setJob] = useState([]);
 
   const fetchAllData = async () => {
-    const res = await axios.get("https://superlabs-backend.onrender.com/api/v1/jobpost");
+    const res = await axios.get("https://superlabs-backend.onrender.com/admin/jobpost");
     setJob(res.data);
   };
 
@@ -30,7 +30,7 @@ function App() {
 
   const name = localStorage.getItem("email");
 
-  if (name == "admin@superlabs.com") {
+  if (name == "dineshmoorthi757@gmail.com") {
     return (
       <MantineProvider>
         <div className="font-Josefin">
