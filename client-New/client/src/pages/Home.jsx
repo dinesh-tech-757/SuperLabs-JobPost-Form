@@ -8,6 +8,7 @@ import RoomIcon from "@mui/icons-material/Room";
 import CategoryIcon from "@mui/icons-material/Category";
 import React from "react";
 import { Drawer, Typography, IconButton } from "@material-tailwind/react";
+import LoadingPage from "./LoadingPage";
 
 const jobUrl = import.meta.env.VITE_JOB_URL;
 const locationUrl = import.meta.env.VITE_LOCATION_URL;
@@ -43,6 +44,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(jobUrl);
         setJobs(response.data);
       } catch (err) {
@@ -144,6 +146,8 @@ const Home = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  if (loading) return <LoadingPage />;
 
   return (
     <main
