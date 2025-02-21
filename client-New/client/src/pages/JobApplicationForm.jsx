@@ -35,13 +35,18 @@ function JobApplicationForm() {
   const handleFileChange = (e) => {
     const { name, files } = e.target;
     const file = files[0];
-    if (file && file.type !== "application/pdf") {
-      setErrors({ ...errors, [name]: "Only PDF files are allowed" });
-      setFileMessages({ ...fileMessages, [name]: "" });
-    } else {
-      setErrors({ ...errors, [name]: "" });
-      setFormData({ ...formData, [name]: file });
-      setFileMessages({ ...fileMessages, [name]: "PDF has been uploaded" });
+    if (file) {
+      if (file.type !== "application/pdf") {
+        setErrors({ ...errors, [name]: "Only PDF files are allowed" });
+        setFileMessages({ ...fileMessages, [name]: "" });
+      } else if (file.size > 5 * 1024 * 1024) {
+        setErrors({ ...errors, [name]: "File size should be less than 5MB" });
+        setFileMessages({ ...fileMessages, [name]: "" });
+      } else {
+        setErrors({ ...errors, [name]: "" });
+        setFormData({ ...formData, [name]: file });
+        setFileMessages({ ...fileMessages, [name]: "PDF has been uploaded" });
+      }
     }
   };
 
