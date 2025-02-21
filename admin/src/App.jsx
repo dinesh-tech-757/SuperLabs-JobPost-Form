@@ -15,6 +15,7 @@ import JobPost from "./pages/JobPost";
 import NoPage from "./components/NoPage";
 import Candidates from "./pages/Candidates";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   const [job, setJob] = useState([]);
@@ -38,6 +39,7 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/" element={<Home />}>
                     <Route index element={<Dashboard />} />
