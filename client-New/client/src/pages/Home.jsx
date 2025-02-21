@@ -102,7 +102,7 @@ const Home = () => {
 
   const filteredJobs = jobs?.filter((job) => {
     const matchesSearch =
-      job.job_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.job_title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       job.job_technical_skills.some((skill) =>
         skill.toLowerCase().includes(searchQuery.toLowerCase())
       );
@@ -119,11 +119,11 @@ const Home = () => {
   });
 
   const filteredLocations = location.filter((loc) =>
-    loc.location_title.toLowerCase().includes(locationSearch.toLowerCase())
+    loc.location_title?.toLowerCase().includes(locationSearch.toLowerCase())
   );
 
   const filteredCategories = category.filter((cat) =>
-    cat.category_title.toLowerCase().includes(categorySearch.toLowerCase())
+    cat.category_title?.toLowerCase().includes(categorySearch.toLowerCase())
   );
 
   const indexOfLastJob = currentPage * jobsPerPage;

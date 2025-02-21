@@ -13,13 +13,15 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import "../index.css";
 
-const categoryUrl = import.meta.env.VITE_CATEGORY_URL
-const locationUrl = import.meta.env.VITE_LOCATION_URL
-const jobUrl = import.meta.env.VITE_JOB_URL
+const categoryUrl = import.meta.env.VITE_CATEGORY_URL;
+const locationUrl = import.meta.env.VITE_LOCATION_URL;
+const jobUrl = import.meta.env.VITE_JOB_URL;
 
 function AddJobPost({ job, setJob, setIsAdd }) {
   const [category, setCategory] = useState([]);
   const [location, setLocation] = useState([]);
+
+  const [errors, setErrors] = useState([]);
 
   const [newJobPost, setNewJobPost] = useState([
     {
@@ -177,6 +179,42 @@ function AddJobPost({ job, setJob, setIsAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // Error state
+    const errors = {};
+
+    // Validation checks
+    if (!newJobPost.job_title.trim())
+      errors.job_title = "Job title is required.";
+    if (!locationType.length)
+      errors.job_location_type = "Select at least one location type.";
+    if (!newJobPost.job_category)
+      errors.job_category = "Job category is required.";
+    if (!jobType.length) errors.job_type = "Select at least one job type.";
+    if (!newJobPost.job_location)
+      errors.job_location = "Job location is required.";
+    if (!newJobPost.job_experience_level)
+      errors.job_experience_level = "Experience level is required.";
+    if (!techSkillsValues.length)
+      errors.job_technical_skills = "At least one technical skill is required.";
+    if (!educationalValues.length)
+      errors.job_education_qualification =
+        "Education qualification is required.";
+    if (!newJobPost.job_description.trim())
+      errors.job_description = "Job description is required.";
+    if (!newJobPost.job_interview_rounds)
+      errors.job_interview_rounds = "Interview rounds must be specified.";
+    if (!newJobPost.job_budget || isNaN(newJobPost.job_budget))
+      errors.job_budget = "Valid budget is required.";
+    if (!createDate) errors.job_create_date = "Created date is required.";
+    if (!closeDate) errors.job_close_date = "Closing date is required.";
+    if (!newJobPost.job_status) errors.job_status = "Job status is required.";
+
+    // If errors exist, prevent submission
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      return;
+    }
+
     axios
       .post(
         jobUrl,
@@ -253,7 +291,11 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               value={newJobPost.job_title}
               onChange={(e) => handleSingleFieldChange(e)}
             />
+            {errors.job_title && (
+              <p className="text-red-500">{errors.job_title}</p>
+            )}
           </div>
+
           <div>
             <Typography
               variant="small"
@@ -283,6 +325,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 Remote
               </label>
             </div>
+            {errors.job_location_type && (
+              <p className="text-red-500">{errors.job_location_type}</p>
+            )}
           </div>
 
           <div>
@@ -312,7 +357,11 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 ))}
               </select>
             </div>
+            {errors.job_category && (
+              <p className="text-red-500">{errors.job_category}</p>
+            )}
           </div>
+
           <div>
             <Typography
               variant="small"
@@ -362,6 +411,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 Contract
               </label>
             </div>
+            {errors.job_type && (
+              <p className="text-red-500">{errors.job_type}</p>
+            )}
           </div>
           <div>
             <Typography
@@ -390,6 +442,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 ))}
               </select>
             </div>
+            {errors.job_location && (
+              <p className="text-red-500">{errors.job_location}</p>
+            )}
           </div>
           <div>
             <Typography
@@ -408,6 +463,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               value={newJobPost.job_experience_level}
               onChange={(e) => handleSingleFieldChange(e)}
             />
+            {errors.job_experience_level && (
+              <p className="text-red-500">{errors.job_experience_level}</p>
+            )}
           </div>
           <div>
             <Typography
@@ -444,6 +502,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 />
               </div>
             </div>
+            {errors.job_technical_skills && (
+              <p className="text-red-500">{errors.job_technical_skills}</p>
+            )}
           </div>
           <div>
             <Typography
@@ -480,6 +541,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 />
               </div>
             </div>
+            {errors.job_education && (
+              <p className="text-red-500">{errors.job_education}</p>
+            )}
           </div>
           <div className="font-Josefin">
             <Typography
@@ -519,6 +583,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 onChange={handleJobDescription}
               />
             </div>
+            {errors.job_description && (
+              <p className="text-red-500">{errors.job_description}</p>
+            )}
           </div>
           <div>
             <Typography
@@ -537,6 +604,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               value={newJobPost.job_interview_rounds}
               onChange={(e) => handleSingleFieldChange(e)}
             />
+            {errors.job_interview_rounds && (
+              <p className="text-red-500">{errors.job_interview_rounds}</p>
+            )}
           </div>
 
           <div>
@@ -556,6 +626,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
               value={newJobPost.job_budget}
               onChange={(e) => handleSingleFieldChange(e)}
             />
+            {errors.job_budget && (
+              <p className="text-red-500">{errors.job_budget}</p>
+            )}
           </div>
 
           <div>
@@ -572,6 +645,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 value={createDate}
                 onChange={(e) => handleCreatedDate(e)}
               />
+              {errors.job_created_date && (
+                <p className="text-red-500">{errors.job_created_date}</p>
+              )}
             </div>
           </div>
           <div>
@@ -588,6 +664,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 value={closeDate}
                 onChange={(e) => handleCloseDate(e)}
               />
+              {errors.job_close_date && (
+                <p className="text-red-500">{errors.job_close_date}</p>
+              )}
             </div>
           </div>
           <div>
@@ -615,6 +694,9 @@ function AddJobPost({ job, setJob, setIsAdd }) {
                 </option>
               </select>
             </div>
+            {errors.job_status && (
+              <p className="text-red-500">{errors.job_status}</p>
+            )}
           </div>
         </DialogHeader>
         <DialogFooter>

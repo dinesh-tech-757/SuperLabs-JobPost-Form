@@ -2,10 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
-const jobUrl = import.meta.env.VITE_JOB_URL;
 
 const JobDetail = () => {
   const { id } = useParams();
+
+  const jobUrl = import.meta.env.VITE_JOB_URL;
+
+  console.log(id);
 
   const [jobDetail, setJobDetail] = useState({});
 
